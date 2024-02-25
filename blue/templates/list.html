@@ -1,0 +1,191 @@
+{%load static%}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Blue Med</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="{% static 'assets/img/apple-touch-icon.png" rel="apple-touch-icon' %}">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+
+
+
+<style>.card img {
+  display: inline-block; /* أو display: inline-block; */
+}</style>
+
+{% comment %}  {% endcomment %}
+
+
+{% comment %}  {% endcomment %}
+<body>
+  <style>
+    body{
+      background-color:#aaaa;
+  </style>
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+       
+      </a>
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a  href="{% url 'blue:app' %}" >Home</a></li>
+          <li><a href="{% url 'blue:list' %}" >Product</a></li>
+          {% comment %} <li><a href="services.html" class="active">Services</a></li> {% endcomment %}
+          <li><a  href="{% url 'blue:app' %}">ABOUT US</a></li>
+          <li><a  href="{% url 'blue:contact' %}">Contact</a></li>
+          <li><a ></a></li>
+          
+          <li  class="active">
+            <select onchange="location = this.value;">
+              
+              <option selected disabled>Categories</option>
+              {% for category in categories %}
+                <option value="{% url 'blue:category' category.id %}" >{{ category.namecategorie }}</option>
+              {% endfor %}
+            </select>
+          </li>
+        </ul>
+   
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+
+
+
+<br><br><br><br>
+<section id="about-boxes" class="about-boxes">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      {% for product in products %}
+      <div class="col-lg-4 col-md-5 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+        <div class="card">
+
+          <div class="image-container">
+            <img src="{{ product.image1.url }}" alt="" class="img-fluid">
+            
+          {% comment %} {% if product.image1.url  %}
+          <a href="/product/{{ product.id }}/details">
+            <img src="{{ product.product_image.url }}" alt=" " style="border: 1px solid #000000;">
+          </a>
+          {% else %}
+          <a href="{% static 'assets/img/features.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
+          {% endif %} {% endcomment %}
+          <div class="card-icon">
+            <i class="ri-brush-4-line"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><a href="/product/{{ product.id }}/details">{{ product.name }}</a></h5>
+            <p class="card-text">{{ product.description }}</p>
+            <a href="/product/{{ product.id }}/details">View</a>
+          </div>
+        </div>
+      </div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+{% comment %} 
+
+
+
+
+
+
+
+
+
+
+<section id="services-cards" class="services-cards">
+  <div class="container" data-aos="fade-up">
+    <div class="row gy-4">
+      {% for product in products %}
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-item">
+          <div class="row">
+            <div class="col-xl-5">
+              <a href="/product/{{ product.id }}/details">
+                <img src="{{ product.image1.url }}" alt=" " style="border: 1px solid #000000;">
+              </a>
+            </div>
+            <div class="col-xl-7 d-flex align-items-center">
+              <div class="card-body">
+                <h4 class="card-title"><h1>{{ product.name }}</h1></h4>
+                <p>{{ product.description }}</p>
+                <a href="/product/{{ product.id }}/details">Details </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- <div class="col-xl-5">
+        <a href="/product/{{ product.id }}/details">
+          <img src="{{ product.image1.url }}" alt=" " style="border: 1px solid #000000;">
+        </a>
+      </div>
+      <div class="col-xl-7 d-flex align-items-center">
+        <div class="card-body">
+          <h4 class="card-title"><h1>{{ product.name }}</h1></h4>
+          <p>{{ product.description }}</p>
+          <a href="/product/{{ product.id }}/details">Details </a>
+        </div>
+      </div> -->
+      {% endfor %} {% endcomment %}
+    </div>
+  </div>
+</section><!-- End Services Cards Section --> 
+    </div>
+  </div>
+</section><!-- End Services Cards Section -->
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  {% comment %} <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script> {% endcomment %}
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
